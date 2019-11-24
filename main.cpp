@@ -10,5 +10,8 @@ int main()
     cube.output();
     cube.int_cube_input();
     cube.int_cube_output();
+    int_cube int_cube;
+    int_cube.set_int_cube();
+    int_cube.int_cube_output();
     return 0;
 }

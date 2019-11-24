@@ -3,6 +3,7 @@
 #define face2corner(a,b,c) 36*a+6*b+c
 #define face2edge(a,b) a*6+b
 int pop[258][2];
+int mid_pm[20][2];
 int F =1,R=2,B=3,L=4,U=5,D=6;
 
 const int let2int [20][3]={{46,32,0},{48,10,2},{40,30,22},{42,12,20},{50,38,6},{52,16,8},{56,30,28},{58,18,26},
@@ -89,10 +90,11 @@ pop[face2corner(R,B,D)][1]=2; pop[face2corner(R,B,D)][0]=8; pop[face2edge(L,D)][
 }
 
 int cube::int_cube_output(){
-    cout<<"ħ���������£�"<<endl;
+    cout<<"this is cube class:"<<"ħ���������£�"<<endl;
     for(int i=0;i<2;i++){
     for(int j=0;j<20;j++){
-        cout<<"cube::"<<" "<<int_cube[j][i];
+        cout<<" "<<int_cube[j][i];
+        mid_pm[j][i]=int_cube[j][i];
     }
     cout<<endl;
     }
