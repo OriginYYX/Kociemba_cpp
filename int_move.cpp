@@ -18,3 +18,7 @@ int int_cube::set_int_cube(){
 }
 return 0;
 }
+
+int int_cube::int_cube_move(int move){
+    
+}

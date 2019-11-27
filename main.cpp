@@ -15,3 +15,5 @@ int main()
     int_cube.int_cube_output();
     return 0;
 }
+
+// cd "g:\Work\many_tests\Kociemba_cpp\" ; if ($?) { g++ main.cpp int_move.cpp cube.cpp -o main } ; if ($?) { .\main }
