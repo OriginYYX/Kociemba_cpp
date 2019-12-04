@@ -33,14 +33,21 @@ int int_cube::set_int_cube(){
 return 0;
 }
 
-int int_cube::int_cube_move(int move){
-    static const int co_rotate_map[6][2][4] = {
-        {
-            {{0,1,3,2},{2,3,1,0}} // TOP [clock] [anti-clock]
-        },{
-            {}
-        },
+int int_cube::int_cube_move(int move,int count){
+    static const int co_rotate_map[6][4] = {
+        
+        {0,1,3,2},// TOP [clock] [anti-clock] 2 3 1 0
+        {7,8,6,5},// DOWN
+        {7,5,1,3},// LEFT
+        {6,8,4,2},// RIGHT
+        {5,6,2,1},// FRONT
+        {8,7,3,4},// BACK
     };
+    
+    static const int ed_rotate_map[6][4] = {
+        {}
+    };
+
     static const int co_toward_map
     static const auto swap = [](int *A, const int *C) {
 		int temp = A[C[0]];
@@ -49,5 +56,12 @@ int int_cube::int_cube_move(int move){
 		A[C[2]]=A[C[3]];
 		A[C[3]]=temp;
 	};
+    static const auto swap_reverse = [](int *A, const int *C){
+        int temp = A[C[3]];
+        A[C[3]]=A[C[2]];
+        A[C[2]]=A[C[1]];
+        A[C[1]]=A[C[0]];
+        A[C[0]] = temp;
+    };
 
 }
