@@ -34,5 +34,20 @@ return 0;
 }
 
 int int_cube::int_cube_move(int move){
-    
+    static const int co_rotate_map[6][2][4] = {
+        {
+            {{0,1,3,2},{2,3,1,0}} // TOP [clock] [anti-clock]
+        },{
+            {}
+        },
+    };
+    static const int co_toward_map
+    static const auto swap = [](int *A, const int *C) {
+		int temp = A[C[0]];
+		A[C[0]]=A[C[1]];
+		A[C[1]]=A[C[2]];
+		A[C[2]]=A[C[3]];
+		A[C[3]]=temp;
+	};
+
 }
