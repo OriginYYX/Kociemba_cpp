@@ -8,7 +8,7 @@ public:
     int int_cube_output();
     int set_int_cube();
     int int_cube[20][2];
-    int int_cube_move(int move);
+    int int_cube_move(int move,int count);
 };
 
 #endif

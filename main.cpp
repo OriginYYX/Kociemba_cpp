@@ -13,6 +13,15 @@ int main()
     int_cube int_cube;
     int_cube.set_int_cube();
     int_cube.int_cube_output();
+    while (true){
+        int a,b;
+        cout<<"请输入魔方操作：";
+        cin>>a>>b;
+        int_cube.int_cube_move(a,b);
+        int_cube.int_cube_output();
+        cout<<endl;
+    }
+
     return 0;
 }
 
