@@ -15,7 +15,7 @@ using namespace std;
 
 
 int cube::input(){
-    cout<<"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä§ï¿½ï¿½×´Ì¬:"<<endl;
+    cout<<"ÊäÈëÄ§·½×´Ì¬"<<endl;
     for(int i=0;i<6;i++){
         for(int j=0;j<9;j++){
             cin>>cubelet[i][j];
@@ -101,7 +101,7 @@ pop[face2corner(R,B,D)][1]=2; pop[face2corner(R,B,D)][0]=8; pop[face2edge(L,D)][
 }
 
 int cube::int_cube_output(){
-    cout<<"this is cube class:"<<"Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½"<<endl;
+    cout<<"this is cube class:"<<endl;
     for(int i=0;i<2;i++){
     for(int j=0;j<20;j++){
         cout<<" "<<int_cube[j][i];

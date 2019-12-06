@@ -1,0 +1,1 @@
+cd "g:\Work\many_tests\Kociemba_cpp\" ; if ($?) { g++ main.cpp int_move.cpp cube.cpp -o main } ; if ($?) { .\main }

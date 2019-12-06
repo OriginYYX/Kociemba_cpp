@@ -15,7 +15,7 @@ int main()
     int_cube.int_cube_output();
     while (true){
         int a,b;
-        cout<<"è¯·è¾“å…¥é­”æ–¹æ“ä½œï¼š";
+        cout<<"ÇëÊäÈëÄ§·½²Ù×÷£º";
         cin>>a>>b;
         int_cube.int_cube_move(a,b);
         int_cube.int_cube_output();

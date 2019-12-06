@@ -75,9 +75,10 @@ int int_cube::int_cube_move(int move,int count){
         {11,4,3,7},
         {9,6,1,5}
     };
-    static const auto toward_swap = [count](int *A,const int *B,const int *C) { 
+    static const auto toward_swap = [](int *A,const int *B,const int *C,int count) { 
     //A is int_cubeint_cube B is toward_map C is rotate_map and ed(1)
         if (count==0){
+            
             int demp = A[C[0]];
             A[C[0]]=B[A[C[1]]];
             A[C[1]]=B[A[C[2]]];
@@ -85,11 +86,12 @@ int int_cube::int_cube_move(int move,int count){
             A[C[3]]=B[demp];
         }
         else{
-            int demp = A[C[3]];
+            int demp = A[C[3]];//demp=0
             A[C[3]]=B[A[C[2]]];
             A[C[2]]=B[A[C[1]]];
             A[C[1]]=B[A[C[0]]];
             A[C[0]]=B[demp];
+
         }
     };
     static const int co_toward_map[6][3] = {
@@ -148,13 +150,13 @@ int int_cube::int_cube_move(int move,int count){
         const int *B = co_toward_map[move];
         const int *D = ed_toward_map[move];
         if(count==0){
-            swap(cp,C);toward_swap(co,B,C);
-            swap(ep,E);toward_swap(eo,D,E);
+            swap(cp,C);toward_swap(co,B,C,count);
+            swap(ep,E);toward_swap(eo,D,E,count);
             return 0;
         }
         else{
-            swap_reverse(cp,C);toward_swap(co,B,C);
-            swap_reverse(ep,E);toward_swap(eo,D,E);
+            swap_reverse(cp,C);toward_swap(co,B,C,count);
+            swap_reverse(ep,E);toward_swap(eo,D,E,count);
             return 0;
         }
     }
