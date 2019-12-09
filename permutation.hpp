@@ -7,7 +7,7 @@ int cp[8];
 int ep[12];
 int co[8];
 int eo[12];
-int Permutation(int count,const int *a);
-int Combination(int count,const int *a);
+int Permutation(int count,const int A[]);
+int Combination(int count,const int A[]);
 
 #endif
