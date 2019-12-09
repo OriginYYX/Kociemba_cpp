@@ -3,6 +3,10 @@
 #include <iostream>
 #include "cube.hpp"
 using namespace std;
+extern int cp[8];
+extern int ep[12];
+extern int co[8];
+extern int eo[12];
 class int_cube{
 public:
     int int_cube_output();
