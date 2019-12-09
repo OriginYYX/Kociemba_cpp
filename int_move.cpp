@@ -95,12 +95,12 @@ int int_cube::int_cube_move(int move,int count){
         }
     };
     static const int co_toward_map[6][3] = {
-        {0,2,1},
-        {0,2,1},// U D
-        {1,0,2},
-        {1,0,2},//F B
-        {2,1,0},
-        {2,1,0} //L R
+        {0,1,2},
+        {0,1,2},// U D
+        {2,0,1},
+        {1,0,1},//F B
+        {1,2,0},
+        {1,2,0} //L R
     };
 
     
