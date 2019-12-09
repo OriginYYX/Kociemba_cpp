@@ -75,39 +75,6 @@ int int_cube::int_cube_move(int move,int count){
         {11,4,3,7},
         {9,6,1,5}
     };
-    static const auto toward_swap = [](int *A,const int *B,const int *C,int count) { 
-    //A is int_cubeint_cube B is toward_map C is rotate_map and ed(1)
-        if (count==0){
-            
-            int demp = A[C[0]];
-            A[C[0]]=B[A[C[1]]];
-            A[C[1]]=B[A[C[2]]];
-            A[C[2]]=B[A[C[3]]];
-            A[C[3]]=B[demp];
-        }
-        else{
-            int demp = A[C[3]];//demp=0
-            A[C[3]]=B[A[C[2]]];
-            A[C[2]]=B[A[C[1]]];
-            A[C[1]]=B[A[C[0]]];
-            A[C[0]]=B[demp];
-
-        }
-    };
-    static const int co_toward_map[6][3] = {
-        {0,1,2},
-        {0,1,2},// U D
-        {2,0,1},
-        {1,0,1},//F B
-        {1,2,0},
-        {1,2,0} //L R
-    };
-
-    
-
-    static const int ed_toward_map[6][2] = {
-        {0,1},{0,1},{0,1},{0,1},{1,0},{1,0}
-    };
 
     static const auto swap = [](int *A, const int *C) {
 		int temp = A[C[0]];
@@ -147,16 +114,38 @@ int int_cube::int_cube_move(int move,int count){
     else{
         const int *C = co_rotate_map[move];
         const int *E = ed_rotate_map[move];
-        const int *B = co_toward_map[move];
-        const int *D = ed_toward_map[move];
         if(count==0){
-            swap(cp,C);toward_swap(co,B,C,count);
-            swap(ep,E);toward_swap(eo,D,E,count);
+            swap(cp,C);swap(co,C);
+            swap(ep,E);swap(eo,E);
+            if (move>=2){
+                if (--co[C[2]]==-1) co[C[2]]=2;
+                if (--co[C[0]]==-1) co[C[0]]=2;
+                if (++co[C[1]]== 3) co[C[1]]=0;
+                if (++co[C[3]]== 3) co[C[3]]=0;
+            }
+            if (move>=4){
+                eo[E[0]] ^= 1;
+			    eo[E[1]] ^= 1;
+			    eo[E[2]] ^= 1;
+			    eo[E[3]] ^= 1;
+            }
             return 0;
         }
         else{
-            swap_reverse(cp,C);toward_swap(co,B,C,count);
-            swap_reverse(ep,E);toward_swap(eo,D,E,count);
+            swap_reverse(cp,C);swap_reverse(co,C);
+            swap_reverse(ep,E);swap_reverse(eo,E);
+            if (move>=2){
+                if (--co[C[2]]==-1) co[C[2]]=2;
+                if (--co[C[0]]==-1) co[C[0]]=2;
+                if (++co[C[1]]== 3) co[C[1]]=0;
+                if (++co[C[3]]== 3) co[C[3]]=0;
+            }
+            if (move>=4){
+                eo[E[0]] ^= 1;
+			    eo[E[1]] ^= 1;
+			    eo[E[2]] ^= 1;
+			    eo[E[3]] ^= 1;
+            }
             return 0;
         }
     }
