@@ -1,5 +1,5 @@
 #include "int_move.hpp"
-int int_cube2Combination(const int *A,int num){
+int int_cube::int_cube2Combination(const int *A,int num){
     int pop=1;
     int a=0;
     int hash_ans=0;
@@ -10,9 +10,25 @@ int int_cube2Combination(const int *A,int num){
     }
     return hash_ans;
 }
-int Combination2int_cube(int hash_ans,int num){
+int int_cube::Combination2int_cube(int hash_ans,int num){
     renturn 0;
 }
+
+int int_cube::E_postion2Combination(const int *A){
+    int hash_ans=0;
+    int pop=1;
+    for (int i=0;i<12;i++){// 5 6 7 8
+        if (pop<=1000&&A[i]>=5&&A[i]<=8){
+            hash_ans+=(i*pop);
+            pop*=10;
+        }
+        else{
+            return hash_ans;
+        }
+    }
+}
+
+
 
 
 
