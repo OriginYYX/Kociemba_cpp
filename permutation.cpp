@@ -10,22 +10,82 @@ int int_cube::int_cube2Combination(const int *A,int num){
     }
     return hash_ans;
 }
+
 int int_cube::Combination2int_cube(int hash_ans,int num){
     renturn 0;
 }
 
 int int_cube::E_postion2Combination(const int *A){
-    int hash_ans=0;
-    int pop=1;
-    for (int i=0;i<12;i++){// 5 6 7 8
-        if (pop<=1000&&A[i]>=5&&A[i]<=8){
-            hash_ans+=(i*pop);
-            pop*=10;
-        }
-        else{
-            return hash_ans;
-        }
-    }
+    int edgeMarkVector[12]=0;		// For radix sort of the edges
+	int edgesRemaining = 4;		// Counts remaining edges
+	int ordinal = 0;		// The choice permutation ordinal
+	int edge;				// The current edge
+
+	for (edge = 0; edge < 12; edge++){
+        if (A[i]<9&&A[i]>4)
+		edgeMarkVector[edge] = 1;
+	}
+	edge = 0;
+	while (edgesRemaining > 0)
+	{
+		if (edgeMarkVector[edge++])
+			edgesRemaining--;	// One less edge to go
+		else
+			// Skip this many permutations
+			ordinal += NChooseM(12-edge, edgesRemaining-1);
+	}
+	return ordinal;
+}
+
+int int_cube::NChooseM(int N, int M)
+{
+	int NoverMfact = N;	// Iterates from N down to M+1 to
+				//   compute N! / (N-M)!
+	int Mfact = 1;		// Iterates from 1 to M to divide
+				//   out the M! term
+	int Result = 1;		// Holds the result of N choose M
+	if (N < M) return 0;	// M must be a subset of M
+	if (M > N/2) M = N-M;	// Optimization
+	while (NoverMfact > M)
+	{
+		Result *= NoverMfact--;	// Work on the N! / (N-M)! part
+		Result /= Mfact++;	// Divide out the M! part
+	}
+	return Result;
+}
+
+void ChoicePermutation(int choiceOrdinal, int* choicePermutation)
+{
+	int edge;		// The current edge
+	int digit = 0;		// The currend edge permutation "digit"
+	int combinations;	// Number of combinations prefixed with this "digit"
+
+	// All other edges are unknown, so begin by initializing them to "invalid"
+	for (edge = 0; edge < 12; edge++)
+		choicePermutation[edge] = 12;
+
+	// Advance four "digits"
+	for (edge = 0; edge < 4; edge++)
+	{
+		// This is something like division where we divide by subtracting
+		// off the number of combinations possible for the current "digit".
+		for (;;)
+		{
+			// Initially starting at 0###, so this begins at 11 Choose 3
+			//   (0 is eliminated leaving 11 possibilites, and there are
+			//    3 unassigned "digits")
+			// N decreases each time we advance the "digit"
+			// M decreases each time we move one "digit" to the right
+			combinations=NChooseM(12-1-digit++, 4-1-edge);
+			if (choiceOrdinal >= combinations)
+				choiceOrdinal -= combinations;
+			else
+				break;
+		}
+		// Since digit is always bumped, must back up by one
+		// Assign middle slice edges in ascending order
+		choicePermutation[digit-1] = 8+edge;
+	}
 }
 
 

@@ -63,7 +63,7 @@ void ChoicePermutation(int choiceOrdinal, int* choicePermutation)
 
 	// All other edges are unknown, so begin by initializing them to "invalid"
 	for (edge = 0; edge < 12; edge++)
-		choicePermutation[edge] = 12;
+		choicePermutation[edge] = 0;
 
 	// Advance four "digits"
 	for (edge = 0; edge < 4; edge++)
@@ -85,21 +85,21 @@ void ChoicePermutation(int choiceOrdinal, int* choicePermutation)
 		}
 		// Since digit is always bumped, must back up by one
 		// Assign middle slice edges in ascending order
-		choicePermutation[digit-1] = 8+edge;
+		choicePermutation[digit-1] = 1;
 	}
 }
 
 
 int main(){
     int pop[12];
-	
+
 	for(int hash_ans=0;hash_ans<495;hash_ans++){
 		ChoicePermutation(hash_ans,pop);
 		for(int i=0;i<12;i++)
 		cout<<pop[i]<<" ";
 	cout<<endl;
 	}
-    
+
 
     return 0;
 }
