@@ -55,9 +55,52 @@ int ChoiceOrdinal(int* choicePermutation)
 }
 
 
+void ChoicePermutation(int choiceOrdinal, int* choicePermutation)
+{
+	int edge;		// The current edge
+	int digit = 0;		// The currend edge permutation "digit"
+	int combinations;	// Number of combinations prefixed with this "digit"
+
+	// All other edges are unknown, so begin by initializing them to "invalid"
+	for (edge = 0; edge < 12; edge++)
+		choicePermutation[edge] = 12;
+
+	// Advance four "digits"
+	for (edge = 0; edge < 4; edge++)
+	{
+		// This is something like division where we divide by subtracting
+		// off the number of combinations possible for the current "digit".
+		for (;;)
+		{
+			// Initially starting at 0###, so this begins at 11 Choose 3
+			//   (0 is eliminated leaving 11 possibilites, and there are
+			//    3 unassigned "digits")
+			// N decreases each time we advance the "digit"
+			// M decreases each time we move one "digit" to the right
+			combinations=NChooseM(12-1-digit++, 4-1-edge);
+			if (choiceOrdinal >= combinations)
+				choiceOrdinal -= combinations;
+			else
+				break;
+		}
+		// Since digit is always bumped, must back up by one
+		// Assign middle slice edges in ascending order
+		choicePermutation[digit-1] = 8+edge;
+	}
+}
+
+
 int main(){
-    int pop[12]={0,1,2,4};
-    cout<<"hash="<<ChoiceOrdinal(pop)<<endl;
+    int pop[12];
+	
+	for(int hash_ans=0;hash_ans<495;hash_ans++){
+		ChoicePermutation(hash_ans,pop);
+		for(int i=0;i<12;i++)
+		cout<<pop[i]<<" ";
+	cout<<endl;
+	}
+    
+
     return 0;
 }
 
