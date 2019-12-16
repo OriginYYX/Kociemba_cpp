@@ -21,26 +21,16 @@ int int_cube::Combination2int_cube(int hash_ans,int num,int *A){
     return 0;
 }
 
-int int_cube::E_postion2Combination(const int *A){
-    int edgeMarkVector[12];		// For radix sort of the edges
-	int edgesRemaining = 4;		// Counts remaining edges
-	int ordinal = 0;		// The choice permutation ordinal
-	int edge;				// The current edge
-
-	// Radix sort the edges
-	for (edge = 0; edge < 12; edge++)
-    if (A[edge]<9&&A[edge]>4){
-        edgeMarkVector[edge] = 1;
-    }
-		
-	// Scan the edges and compute the ordinal for this permutation
+int int_cube::E_postion2Combination(const int *edgeMarkVector){
+    int edgesRemaining = 4;		 
+	int ordinal = 0;		 
+	int edge;
 	edge = 0;
 	while (edgesRemaining > 0)
 	{
 		if (edgeMarkVector[edge++])
-			edgesRemaining--;	// One less edge to go
+			edgesRemaining--;	 
 		else
-			// Skip this many permutations
 			ordinal += NChooseM(12-edge, edgesRemaining-1);
 	}
 	return ordinal;
@@ -115,8 +105,3 @@ void ChoicePermutation(int choiceOrdinal, int* choicePermutation)
 		choicePermutation[digit-1] = 1;
 	}
 }
-
-
-
-
-
