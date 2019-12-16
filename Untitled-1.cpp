@@ -89,15 +89,27 @@ void ChoicePermutation(int choiceOrdinal, int* choicePermutation)
 	}
 }
 
+int Combination2int_cube(int hash_ans,int num,int *A){
+	int pop=1;
+	int a=0;
+	num==8?a=3:a=2;
+	for (int i=0;i<num;i++){
+		A[i]=hash_ans%a;
+		hash_ans/=a;
+	}
+    return 0;
+}
+
+
 
 int main(){
-    int pop[12];
-
-	for(int hash_ans=0;hash_ans<495;hash_ans++){
-		ChoicePermutation(hash_ans,pop);
-		for(int i=0;i<12;i++)
-		cout<<pop[i]<<" ";
-	cout<<endl;
+    int pop[8]={1,2,1,0,0,1,2,1};
+	int ans[12];
+	int num=8;
+	cout<<int_cube2Combination(pop,num)<<endl;
+	Combination2int_cube(int_cube2Combination(pop,num),num,ans);
+	for (int i=0;i<12;i++){
+		cout<<ans[i]<<" ";
 	}
 
 

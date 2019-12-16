@@ -16,7 +16,6 @@ public:
     int int_cube2Combination(const int *A,int num);
     int Combination2int_cube(int hash_ans,int num);
     int E_postion2Combination(const int *A);
-
 };
 
 #endif

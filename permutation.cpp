@@ -10,8 +10,15 @@ int int_cube::int_cube2Combination(const int *A,int num){
     }
     return hash_ans;
 }
-int int_cube::Combination2int_cube(int hash_ans,int num){
-    renturn 0;
+int int_cube::Combination2int_cube(int hash_ans,int num,int *A){
+	int pop=1;
+	int a=0;
+	num==8?a=3:a=2;
+	for (int i=0;i<num;i++){
+		A[i]=hash_ans%a;
+		hash_ans/=a;
+	}
+    return 0;
 }
 
 int int_cube::E_postion2Combination(const int *A){
