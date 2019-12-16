@@ -65,18 +65,10 @@ int NChooseM(int N, int M)
 
 int ChoiceOrdinal(int* choicePermutation)
 {
-	int edgeMarkVector[12];		// For radix sort of the edges
 	int edgesRemaining = 4;		// Counts remaining edges
 	int ordinal = 0;		// The choice permutation ordinal
 	int edge;				// The current edge
 
-	// Radix sort the edges
-	for (edge = 0; edge < 12; edge++)
-		edgeMarkVector[edge] = 0;
-	for (edge = 0; edge < 4; edge++)
-		edgeMarkVector[choicePermutation[edge]] = 1;
-
-	// Scan the edges and compute the ordinal for this permutation
 	edge = 0;
 	while (edgesRemaining > 0)
 	{

@@ -28,20 +28,12 @@ int NChooseM(int N, int M)
 	return Result;
 }
 
-int ChoiceOrdinal(int* choicePermutation)
+int ChoiceOrdinal(int* edgeMarkVector)
 {
-	int edgeMarkVector[12];		// For radix sort of the edges
 	int edgesRemaining = 4;		// Counts remaining edges
 	int ordinal = 0;		// The choice permutation ordinal
 	int edge;				// The current edge
 
-	// Radix sort the edges
-	for (edge = 0; edge < 12; edge++)
-		edgeMarkVector[edge] = 0;
-	for (edge = 0; edge < 4; edge++)
-		edgeMarkVector[choicePermutation[edge]] = 1;
-
-	// Scan the edges and compute the ordinal for this permutation
 	edge = 0;
 	while (edgesRemaining > 0)
 	{
@@ -111,7 +103,13 @@ int main(){
 	for (int i=0;i<12;i++){
 		cout<<ans[i]<<" ";
 	}
-
+	for (int i=0;i<495;i++){
+		ChoicePermutation(i,ans);
+		for (int j=0;j<12;j++){
+			cout<<ans[j]<<" ";
+		}
+		cout<<endl;
+	}
 
     return 0;
 }
