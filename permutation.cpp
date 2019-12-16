@@ -10,21 +10,23 @@ int int_cube::int_cube2Combination(const int *A,int num){
     }
     return hash_ans;
 }
-
 int int_cube::Combination2int_cube(int hash_ans,int num){
     renturn 0;
 }
 
 int int_cube::E_postion2Combination(const int *A){
-    int edgeMarkVector[12]=0;		// For radix sort of the edges
+    int edgeMarkVector[12];		// For radix sort of the edges
 	int edgesRemaining = 4;		// Counts remaining edges
 	int ordinal = 0;		// The choice permutation ordinal
 	int edge;				// The current edge
 
-	for (edge = 0; edge < 12; edge++){
-        if (A[i]<9&&A[i]>4)
-		edgeMarkVector[edge] = 1;
-	}
+	// Radix sort the edges
+	for (edge = 0; edge < 12; edge++)
+    if (A[edge]<9&&A[edge]>4){
+        edgeMarkVector[edge] = 1;
+    }
+		
+	// Scan the edges and compute the ordinal for this permutation
 	edge = 0;
 	while (edgesRemaining > 0)
 	{
@@ -37,7 +39,7 @@ int int_cube::E_postion2Combination(const int *A){
 	return ordinal;
 }
 
-int int_cube::NChooseM(int N, int M)
+int NChooseM(int N, int M)
 {
 	int NoverMfact = N;	// Iterates from N down to M+1 to
 				//   compute N! / (N-M)!
@@ -54,6 +56,33 @@ int int_cube::NChooseM(int N, int M)
 	return Result;
 }
 
+int ChoiceOrdinal(int* choicePermutation)
+{
+	int edgeMarkVector[12];		// For radix sort of the edges
+	int edgesRemaining = 4;		// Counts remaining edges
+	int ordinal = 0;		// The choice permutation ordinal
+	int edge;				// The current edge
+
+	// Radix sort the edges
+	for (edge = 0; edge < 12; edge++)
+		edgeMarkVector[edge] = 0;
+	for (edge = 0; edge < 4; edge++)
+		edgeMarkVector[choicePermutation[edge]] = 1;
+
+	// Scan the edges and compute the ordinal for this permutation
+	edge = 0;
+	while (edgesRemaining > 0)
+	{
+		if (edgeMarkVector[edge++])
+			edgesRemaining--;	// One less edge to go
+		else
+			// Skip this many permutations
+			ordinal += NChooseM(12-edge, edgesRemaining-1);
+	}
+	return ordinal;
+}
+
+
 void ChoicePermutation(int choiceOrdinal, int* choicePermutation)
 {
 	int edge;		// The current edge
@@ -62,7 +91,7 @@ void ChoicePermutation(int choiceOrdinal, int* choicePermutation)
 
 	// All other edges are unknown, so begin by initializing them to "invalid"
 	for (edge = 0; edge < 12; edge++)
-		choicePermutation[edge] = 12;
+		choicePermutation[edge] = 0;
 
 	// Advance four "digits"
 	for (edge = 0; edge < 4; edge++)
@@ -84,7 +113,7 @@ void ChoicePermutation(int choiceOrdinal, int* choicePermutation)
 		}
 		// Since digit is always bumped, must back up by one
 		// Assign middle slice edges in ascending order
-		choicePermutation[digit-1] = 8+edge;
+		choicePermutation[digit-1] = 1;
 	}
 }
 
