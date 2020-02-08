@@ -6,10 +6,34 @@ int int_cube::int_cube2Combination(const int *A,int num){
     num==8?a=3:a=2;
     for (int i=0;i<num;i++){
         hash_ans+=(A[i]*pop);
-        pop*=2;
+        pop*=a;
     }
     return hash_ans;
 }
+int NChooseM(int N, int M)
+{
+	int NoverMfact = N;	// Iterates from N down to M+1 to
+				//   compute N! / (N-M)!
+	int Mfact = 1;		// Iterates from 1 to M to divide
+				//   out the M! term
+	int Result = 1;		// Holds the result of N choose M
+	if (N < M) return 0;	// M must be a subset of M
+	if (M > N/2) M = N-M;	// Optimization
+	while (NoverMfact > M)
+	{
+		Result *= NoverMfact--;	// Work on the N! / (N-M)! part
+		Result /= Mfact++;	// Divide out the M! part
+	}
+	return Result;
+}
+
+int* int_cube::returnArr(int *arr){
+	arr[0]=int_cube2Combination(co,8);
+	arr[1]=int_cube2Combination(eo,12);
+	arr[2]=E_postion2Combination(ep);
+	return arr;
+}
+
 int int_cube::Combination2int_cube(int hash_ans,int num,int *A){
 	int pop=1;
 	int a=0;
@@ -36,22 +60,6 @@ int int_cube::E_postion2Combination(const int *edgeMarkVector){
 	return ordinal;
 }
 
-int NChooseM(int N, int M)
-{
-	int NoverMfact = N;	// Iterates from N down to M+1 to
-				//   compute N! / (N-M)!
-	int Mfact = 1;		// Iterates from 1 to M to divide
-				//   out the M! term
-	int Result = 1;		// Holds the result of N choose M
-	if (N < M) return 0;	// M must be a subset of M
-	if (M > N/2) M = N-M;	// Optimization
-	while (NoverMfact > M)
-	{
-		Result *= NoverMfact--;	// Work on the N! / (N-M)! part
-		Result /= Mfact++;	// Divide out the M! part
-	}
-	return Result;
-}
 
 int ChoiceOrdinal(int* choicePermutation)
 {
@@ -62,7 +70,7 @@ int ChoiceOrdinal(int* choicePermutation)
 	edge = 0;
 	while (edgesRemaining > 0)
 	{
-		if (edgeMarkVector[edge++])
+		if (choicePermutation[edge++])
 			edgesRemaining--;	// One less edge to go
 		else
 			// Skip this many permutations
@@ -72,7 +80,7 @@ int ChoiceOrdinal(int* choicePermutation)
 }
 
 
-void ChoicePermutation(int choiceOrdinal, int* choicePermutation)
+void int_cube::ChoicePermutation(int choiceOrdinal, int* choicePermutation)
 {
 	int edge;		// The current edge
 	int digit = 0;		// The currend edge permutation "digit"

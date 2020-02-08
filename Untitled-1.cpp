@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 int int_cube2Combination(const int *A,int num){
     int pop=1;
@@ -98,6 +99,10 @@ int main(){
     int pop[8]={1,2,1,0,0,1,2,1};
 	int ans[12];
 	int num=8;
+	int testarr[5000][200];
+	cout<<"testarr size= "<<endl;
+	cout<<"23333"<<endl;
+	/*
 	cout<<int_cube2Combination(pop,num)<<endl;
 	Combination2int_cube(int_cube2Combination(pop,num),num,ans);
 	for (int i=0;i<12;i++){
@@ -110,7 +115,7 @@ int main(){
 		}
 		cout<<endl;
 	}
-
+	*/
     return 0;
 }
 
