@@ -139,7 +139,7 @@ int bfs(int *arr){
             yyx.coor_move(i);
             yyx.ans=move.front().ans;
             yyx.ans.push_back(i);
-            if (yyx.co==0){
+            if (yyx.ed==0){
                 cout<<yyx.co<<" "<<yyx.ed<<endl;
                 cout<<"fuckkkkkk"<<endl;
                 for (int i=0;i<yyx.ans.size();i++){
